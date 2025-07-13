@@ -582,6 +582,12 @@ body>.bg {
         width: 70%;
     }
 
+    .close__menu .toggle:hover {
+        transform: unset;
+        color: var(--main-color);
+        text-shadow: unset;
+    }
+
 }
 
 @media screen and (max-width: 800px) {
@@ -598,6 +604,9 @@ body>.bg {
         font-size: calc(var(--offset) * 2);
         top: var(--offset);
         right: var(--offset);
+    }
+    .bg{
+        background-size: 7%;
     }
 }
 
