@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const logo = document.querySelector('.firstscreen__logo');
     const layers = Array.from(logo.querySelectorAll('.firstscreen__logo-text'));
-    const bg = document.querySelector(".bg")
+    const bg = document.querySelector(".firstscreen > .bg")
     let mouseX = 0, mouseY = 0;
 
     const funcEvent = (e) => {
@@ -36,14 +36,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 const speedFactor = (layers.length - i);
                 const yOffset = cy * speedFactor / 6;
                 layer.style.transform = `translateY(${-yOffset}px)`;
-                bg.style.transform = `translateY(${-yOffset * 1.5}px)`; 
+                bg.style.transform = `translateY(${-yOffset * 1.5}px)`;
             })
         })
     }
     else {
-                window.addEventListener('mousemove', funcEvent);
-                updateParallax();
-            }
+        window.addEventListener('mousemove', funcEvent);
+        updateParallax();
+    }
 });
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -99,7 +99,11 @@ document.addEventListener("DOMContentLoaded", () => {
         x: 0,
         duration: 1
     }, "-=0.3");
-
+    // г) заезжает бегущая строка
+    tl.to(".marquee", {
+        rotateZ: "4deg",
+        duration: 1
+    }, "-=0.3");
     // д) рисуем бордюры
     tl.to(".firstscreen", {
         borderLeftWidth: "var(--offset)",
@@ -114,18 +118,25 @@ document.addEventListener("DOMContentLoaded", () => {
         y: 0,
         duration: 0.6
     });
-    tl.to(".firstscreen__side", { backgroundColor: "var(--sec-color)", duration: 0.6 })
+    tl.to(".firstscreen__side", { backgroundColor: "rgba(0, 0, 0, 0.85)", duration: 0.6 })
     // ж) появляется сабтайтл
     tl.to(".firstscreen__text .firstscreen__subtitle", {
         opacity: 1,
         y: 0,
         duration: 0.6
     }, "-=0.4");
-
+    tl.to(
+        ".toggle",
+        {x: "0 !important", duration: 0.5}
+    )
     // з) и в конце — кнопка
     tl.to(".firstscreen__link", {
         opacity: 1,
         y: 0,
         duration: 0.6
     }, "-=0.3");
+    setTimeout(() => {
+        document.querySelector(".firstscreen__side").classList.add("side__anim")
+        document.querySelector(".firstscreen__link").classList.add("link__anim")
+    }, 5000)
 });
